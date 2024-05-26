@@ -1,8 +1,10 @@
 package com.example.quizzapplication.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quizzapplication.QuizActivity
 import com.example.quizzapplication.QuizzModel
 import com.example.quizzapplication.databinding.QuizCategoryItemBinding
 
@@ -18,6 +20,15 @@ class QuizListAdapter(private val quizModelList : List<QuizzModel>) :
             binding.apply {
                 quizTitle.text = model.title
                 quizDescription.text = model.description
+                quizTime.text = model.time + " min"
+                root.setOnClickListener{
+                    val intent = Intent(root.context, QuizActivity::class.java)
+                    root.context.startActivity(intent)
+
+                }
+
+
+
 
             }
         }
