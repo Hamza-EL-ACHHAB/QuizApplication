@@ -34,10 +34,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDataFromFirebase(){
+
         //dummy data
-        quizList.add(QuizzModel("1","Programming","All the basic programming","10"))
-        quizList.add(QuizzModel("2","Computer","All the computer questions","10"))
-        quizList.add(QuizzModel("3","Geogrophy","Boost your geogrophic knowledge","15"))
+        val listQuestionModel = mutableListOf<QuestionModel>()
+        listQuestionModel.add(QuestionModel("q1", mutableListOf("1","2","3","4"),"1"))
+        listQuestionModel.add(QuestionModel("q2", mutableListOf("1","2","3","4"),"1"))
+        listQuestionModel.add(QuestionModel("q3", mutableListOf("1","2","3","4"),"1"))
+
+        quizList.add(QuizzModel("1","Programming","All the basic programming","10",listQuestionModel))
+       // quizList.add(QuizzModel("2","Computer","All the computer questions","10"))
+        //quizList.add(QuizzModel("3","Geogrophy","Boost your geogrophic knowledge","15"))
 
         initRecyclerView()
     }

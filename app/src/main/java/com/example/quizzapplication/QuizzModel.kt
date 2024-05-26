@@ -4,13 +4,13 @@ data class QuizzModel(
     val id: String,
     val title: String,
     val description: String,
-    val time: String
-    val questionList: List
+    val time: String,
+    val questionList: List<QuestionModel>
 ) {
-    constructor() : this("", "", "", "")
+    constructor() : this("", "", "", "", emptyList())
 }
 
-data class QuestionEntity(
+data class QuestionModel(
     val question : String,
     val options : List<String>,
     val correct : String,
