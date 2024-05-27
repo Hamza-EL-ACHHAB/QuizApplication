@@ -2,6 +2,8 @@ package com.example.quizzapplication
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class QuizActivity : AppCompatActivity() {
+class QuizActivity : AppCompatActivity(), View.OnClickListener {
 
     //to pass date from main activity to quiz activity
     companion object{
@@ -29,6 +31,16 @@ class QuizActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         setContentView(binding.root)
+        binding.apply {
+            //it will execute onClick whenever we click the button
+            btn0.setOnClickListener(this@QuizActivity)
+            btn1.setOnClickListener(this@QuizActivity)
+            btn2.setOnClickListener(this@QuizActivity)
+            btn3.setOnClickListener(this@QuizActivity)
+            nextBtn.setOnClickListener(this@QuizActivity)
+
+
+        }
         loadQuestions()
         beginCountdown()
 
@@ -73,5 +85,18 @@ class QuizActivity : AppCompatActivity() {
 
     private fun onTimerFinish() {
         // Finish the quiz
+    }
+
+    override fun onClick(v: View?) {
+        val clickedbtn = v as Button
+        if(clickedbtn.id == R.id.next_btn){
+            // next button has been clicked
+            currentQuestionIndex++
+            loadQuestions()
+        }
+        else{
+            clickedbtn.setBackgroundColor(getColor(R.color.orange))
+
+        }
     }
 }
