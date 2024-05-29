@@ -131,20 +131,24 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun finishQuiz(){
+    private fun finishQuiz() {
         val totalQuestions = questionModelList.size
-        val percentage = ((score.toFloat() / totalQuestions.toFloat() ) *100 ).toInt()
+        val percentage = ((score.toFloat() / totalQuestions.toFloat()) * 100).toInt()
 
-        val dialogBinding  = ScoreDialogBinding.inflate(layoutInflater)
+        val dialogBinding = ScoreDialogBinding.inflate(layoutInflater)
         dialogBinding.apply {
             scoreProgressIndicator.progress = percentage
             scoreProgressText.text = "$percentage %"
-            if(percentage>60){
+            if (percentage > 60) {
                 scoreTitle.text = "Congrats! You have passed"
                 scoreTitle.setTextColor(Color.BLUE)
-            }else{
+                successImage.visibility = View.VISIBLE
+                failureImage.visibility = View.GONE
+            } else {
                 scoreTitle.text = "Oops! You have failed"
                 scoreTitle.setTextColor(Color.RED)
+                successImage.visibility = View.GONE
+                failureImage.visibility = View.VISIBLE
             }
             scoreSubtitle.text = "$score out of $totalQuestions are correct"
             finishBtn.setOnClickListener {
@@ -156,7 +160,6 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             .setView(dialogBinding.root)
             .setCancelable(false)
             .show()
-
     }
 
 

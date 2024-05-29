@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Congrats! You have passed"
+        android:textColor="@color/green"
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -29,8 +30,8 @@
 
     <ImageView
         android:id="@+id/failure_image"
-        android:layout_width="212dp"
-        android:layout_height="73dp"
+        android:layout_width="226dp"
+        android:layout_height="83dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/img"
         android:visibility="gone"

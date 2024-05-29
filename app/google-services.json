@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "859203046670",
+    "project_id": "quizzkotlinapplication",
+    "storage_bucket": "quizzkotlinapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859203046670:android:6762b056a40f2d267adb5f",
+        "android_client_info": {
+          "package_name": "com.example.quizzapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOG5I2X6Af_I-_P0j4T1iJglO1aPT8LR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

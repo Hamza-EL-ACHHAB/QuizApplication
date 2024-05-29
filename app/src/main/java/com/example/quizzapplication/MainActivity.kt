@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.quizzapplication.adapter.QuizListAdapter
 import com.example.quizzapplication.databinding.ActivityMainBinding
+import com.google.firebase.database.FirebaseDatabase
 
 //Questions lors de la soutenance : temps ,difficultés, technologies  , le design et qualité de code
 class MainActivity : AppCompatActivity() {
@@ -36,17 +37,22 @@ class MainActivity : AppCompatActivity() {
     private fun getDataFromFirebase(){
 
         //dummy data
-        val listQuestionModel = mutableListOf<QuestionModel>()
-        listQuestionModel.add(QuestionModel("q1", mutableListOf("1","2","3","4"),"1"))
-        listQuestionModel.add(QuestionModel("q2", mutableListOf("1","2","3","4"),"1"))
-        listQuestionModel.add(QuestionModel("q3", mutableListOf("1","2","3","4"),"1"))
-
-        quizList.add(QuizzModel("1","Programming","All the basic programming","10",listQuestionModel))
-       // quizList.add(QuizzModel("2","Computer","All the computer questions","10"))
-        //quizList.add(QuizzModel("3","Geogrophy","Boost your geogrophic knowledge","15"))
-
-        initRecyclerView()
+        //returns the reference of the database
+        FirebaseDatabase.getInstance().reference
+            .get()
+            .addOnSuccessListener { dataSnapshot->
+                if (dataSnapshot.exists()) {
+                    for (snap in dataSnapshot.children){
+                        val quizzModel = snap.getValue(QuizzModel::class.java)
+                        if (quizzModel != null) {
+                            quizList.add(quizzModel)
+                        }
+                    }
+                }
+                initRecyclerView()
+            }
     }
+
 
     private fun initRecyclerView() {
         adapter = QuizListAdapter(quizList)
