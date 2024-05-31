@@ -1,6 +1,7 @@
 package com.example.quizzapplication
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDataFromFirebase(){
+        binding.progressBar.visibility = View.VISIBLE
 
         //dummy data
         //returns the reference of the database
@@ -55,6 +57,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun initRecyclerView() {
+        binding.progressBar.visibility = View.GONE
+
         adapter = QuizListAdapter(quizList)
         binding.recyclerView.layoutManager = GridLayoutManager(this,2)
         binding.recyclerView.adapter = adapter

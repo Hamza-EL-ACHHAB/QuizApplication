@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzapplication.QuizActivity
 import com.example.quizzapplication.QuizzModel
 import com.example.quizzapplication.databinding.QuizCategoryItemBinding
+import com.squareup.picasso.Picasso
 
 class QuizListAdapter(private val quizModelList : List<QuizzModel>) :
     RecyclerView.Adapter<QuizListAdapter.MyViewHolder>() {
@@ -21,6 +22,7 @@ class QuizListAdapter(private val quizModelList : List<QuizzModel>) :
                 quizTitle.text = model.title
                 quizDescription.text = model.description
                 quizTime.text = model.time + " min"
+                Picasso.get().load(model.imageUrl).into(categoryImage)
                 root.setOnClickListener{
                     val intent = Intent(root.context, QuizActivity::class.java)
                     //before sending the intent
